@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI MCQ Generator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/theme-init.js"></script>
+  <script src="https://unpkg.com/lucide@0.453.0/dist/umd/lucide.min.js" defer></script>
+  <script type="module" src="js/app.js"></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="nav"><div class="wrap navin">
+  <a class="brand" href="#" data-go="landing"><i data-lucide="graduation-cap"></i><span>AI MCQ Generator</span></a>
+  <nav id="menu" aria-label="Main">
+    <a href="#" data-go="landing">Home</a>
+    <a href="#how" data-scroll="how">How It Works</a>
+    <a href="#features" data-scroll="features">Features</a>
+  </nav>
+  <div class="row">
+    <button id="theme" class="icon-btn" type="button" aria-label="Toggle dark theme"><i data-lucide="moon" class="i-moon"></i><i data-lucide="sun" class="i-sun"></i></button>
+    <button class="btn primary" type="button" data-start>Start Learning</button>
+    <button id="burger" class="icon-btn show-sm" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menu"><i data-lucide="menu"></i></button>
+  </div>
+</div></header>
+
+<main id="main" class="wrap">
+<!-- ============ Landing ============ -->
+<div id="view-landing" class="view">
+  <section class="hero">
+    <div>
+      <h1>Turn Your Documents Into Interactive Quizzes</h1>
+      <p class="lead">Upload your study material, generate AI-powered multiple-choice questions, and test your understanding with personalized quizzes.</p>
+      <div class="row wrapx"><button class="btn primary lg" type="button" data-start>Start Learning</button><button class="btn lg" type="button" data-scroll="features">Explore Features</button></div>
+    </div>
+    <div class="flow" aria-hidden="true">
+      <div class="doc card"><i data-lucide="file-text"></i><span class="ln w80"></span><span class="ln"></span><span class="ln w60"></span><span class="ln"></span><span class="ln w70"></span></div>
+      <div class="spark"><i data-lucide="sparkles"></i></div>
+      <div class="mini card"><b>Which organelle produces most of a cell’s ATP?</b>
+        <span class="mo"><u>A</u>Ribosome</span><span class="mo on"><u>B</u>Mitochondrion</span><span class="mo"><u>C</u>Golgi body</span><span class="mo"><u>D</u>Lysosome</span></div>
+    </div>
+  </section>
+
+  <section id="features" class="sec"><h2>Everything you need to study actively</h2>
+    <div class="grid4">
+      <article class="card feat"><i data-lucide="sparkles"></i><h3>AI-Powered Question Generation</h3><p>Generate meaningful MCQs directly from PDF documents.</p></article>
+      <article class="card feat"><i data-lucide="gauge"></i><h3>Flexible Difficulty Levels</h3><p>Choose Easy, Normal, or Hard difficulty.</p></article>
+      <article class="card feat"><i data-lucide="list-checks"></i><h3>Interactive Quiz Experience</h3><p>Answer questions, track progress, and navigate freely.</p></article>
+      <article class="card feat"><i data-lucide="trending-up"></i><h3>Detailed Performance Analysis</h3><p>Understand your results with explanations and correct answers.</p></article>
+    </div>
+  </section>
+
+  <section id="how" class="sec"><h2>How it works</h2>
+    <ol class="grid4 steps">
+      <li><span>1</span><h3>Upload your PDF.</h3></li>
+      <li><span>2</span><h3>Configure your quiz.</h3></li>
+      <li><span>3</span><h3>Answer generated questions.</h3></li>
+      <li><span>4</span><h3>Review your performance.</h3></li>
+    </ol>
+  </section>
+
+  <section class="cta card"><h2>Ready to Test Your Knowledge?</h2><button class="btn primary lg" type="button" data-start>Create Your First Quiz</button></section>
+</div>
+
+<!-- ============ Create (upload + configure) ============ -->
+<div id="view-create" class="view" hidden>
+  <ol id="stepper" class="stepper" aria-label="Progress">
+    <li class="cur"><span>1</span>Upload PDF</li><li><span>2</span>Configure Quiz</li><li><span>3</span>Generate Questions</li>
+  </ol>
+  <section id="step-upload" class="card pad">
+    <h2>Start With Your Study Material</h2>
+    <p class="muted">Upload a PDF document and let AI transform its content into an interactive quiz.</p>
+    <div id="drop" class="drop">
+      <i data-lucide="file-up"></i><p>Drag a PDF here, or</p>
+      <button id="browse" class="btn primary" type="button">Browse Files</button>
+      <small id="limits" class="muted">PDF files only · up to 10 MB</small>
+    </div>
+    <input id="file" type="file" accept="application/pdf,.pdf" hidden>
+    <div id="chip" class="chip" hidden>
+      <i data-lucide="file-text" class="big"></i>
+      <div class="grow"><strong id="f-name"></strong><small id="f-meta" class="muted"></small><div class="bar"><span id="f-bar"></span></div></div>
+      <button id="f-replace" class="btn" type="button">Replace</button>
+      <button id="f-remove" class="btn ghost" type="button">Remove</button>
+    </div>
+    <p id="up-msg" class="msg" role="status"></p>
+  </section>
+  <section id="step-config" class="card pad" hidden>
+    <h2>Configure your quiz</h2>
+    <div class="field"><label for="q-num">Number of Questions</label>
+      <div class="counter"><button type="button" class="icon-btn" data-delta="-1" aria-label="Fewer questions"><i data-lucide="minus"></i></button>
+        <input id="q-num" type="number" min="1" max="50" value="10" inputmode="numeric">
+        <button type="button" class="icon-btn" data-delta="1" aria-label="More questions"><i data-lucide="plus"></i></button></div>
+      <input id="q-range" type="range" min="1" max="50" value="10" aria-label="Number of questions slider">
+      <small id="q-hint" class="muted">Choose 1 to 50 questions.</small></div>
+    <fieldset class="field"><legend>Difficulty</legend><div class="diffs">
+      <label class="diff"><input type="radio" name="diff" value="Easy"><i data-lucide="leaf"></i><strong>Easy</strong><span>Basic concepts and straightforward questions.</span></label>
+      <label class="diff"><input type="radio" name="diff" value="Normal" checked><i data-lucide="scale"></i><strong>Normal</strong><span>Balanced questions that test understanding.</span></label>
+      <label class="diff"><input type="radio" name="diff" value="Hard"><i data-lucide="flame"></i><strong>Hard</strong><span>Challenging questions requiring deeper understanding.</span></label>
+    </div></fieldset>
+    <button id="gen" class="btn primary lg" type="button">Generate My Quiz</button>
+    <div id="gen-loading" class="loading" role="status" hidden><span class="spin"></span><p>Analyzing your document and creating questions...</p><small class="muted">This can take up to a minute for larger documents.</small></div>
+  </section>
+</div>
+
+<!-- ============ Quiz ============ -->
+<div id="view-quiz" class="view" hidden>
+  <section class="card qhead">
+    <div><h1 id="qz-title"></h1><p class="muted"><i data-lucide="file-text"></i> <span id="qz-file"></span></p></div>
+    <div class="row"><span id="qz-diff" class="badge"></span><span id="qz-total" class="badge soft"></span></div>
+  </section>
+  <section class="card prog">
+    <div class="row between wrapx"><strong id="p-cur"></strong><span id="p-stats" class="muted"></span>
+      <button id="submit" class="btn primary" type="button">Submit Quiz</button></div>
+    <div class="bar lg" role="progressbar" aria-label="Quiz progress" aria-valuemin="0" aria-valuemax="100" id="p-wrap"><span id="p-bar"></span></div>
+  </section>
+  <div class="qgrid">
+    <section id="q-card" class="card pad"></section>
+    <aside id="q-side" class="card pad" aria-label="Question navigator">
+      <button id="q-toggle" class="btn" type="button" aria-expanded="false" aria-controls="q-grid"><i data-lucide="list-checks"></i><span id="q-toggle-t">Question navigator</span></button>
+      <h2 class="side-h">Questions</h2>
+      <div id="q-grid" class="qnav"></div>
+      <ul class="legend sm"><li><span class="qn cur">1</span>Current</li><li><span class="qn ans">1<em>✓</em></span>Answered</li><li><span class="qn">1</span>Unanswered</li><li><span class="qn mk">1<em>⚑</em></span>Marked for review</li></ul>
+    </aside>
+  </div>
+</div>
+
+<!-- ============ Results ============ -->
+<div id="view-results" class="view" hidden><div id="results-root"></div></div>
+</main>
+
+<dialog id="dlg" aria-labelledby="dlg-title"><form method="dialog">
+  <h2 id="dlg-title"></h2><div id="dlg-body"></div>
+  <div class="row end"><button id="dlg-cancel" class="btn" value="cancel"></button><button id="dlg-ok" class="btn primary" value="ok" autofocus></button></div>
+</form></dialog>
+<div id="toasts" aria-live="polite"></div>
+</body>
+</html>
