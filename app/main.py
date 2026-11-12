@@ -44,7 +44,9 @@ app = FastAPI(
 
 # CORS configuration
 origins = [
-    "https://ai-mcq-generator-o7jl.onrender.com/"
+    "http://localhost:5500",
+    "http://127.0.0.1:5500",
+    "https://ai-mcq-generator-o7jl.onrender.com/",
 ]
 
 app.add_middleware(
