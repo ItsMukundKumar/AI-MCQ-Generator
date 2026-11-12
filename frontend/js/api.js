@@ -1,5 +1,5 @@
 // All backend communication lives here. Change BASE if FastAPI runs elsewhere.
-export const BASE = 'http://127.0.0.1:8000';
+export const BASE = 'https://ai-mcq-generator-api.onrender.com';
 
 export class ApiError extends Error {
   constructor(status, message) { super(message); this.status = status; }
